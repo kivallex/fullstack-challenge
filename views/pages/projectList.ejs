@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../partial/head %>
+  </head>
+  <body class="container">
+    <header>
+      <% include ../partial/header %>
+    </header>
+    <main>
+      <div class="jumbotron">
+        <h1>Supplyframe Fullstack Challenge</h1>
+        <p>-View list of projects from Hackaday in grid mode-</p>
+        <p>
+          -Display 6 items at a time (meaning by pressing next button, you have
+          to see the next 6 items)
+        </p>
+      </div>
+      <div class="row">
+        <% if (projects && projects.length) { %> <%
+        projects.forEach(function(project) { %>
+        <div class="col-sm-4">
+          <a href="/detail/<%= project.projectNumber %>">
+            <h4><%= project.name %><%= project.projectNumber %></h4>
+            <p><%= project.projectDetail %></p>
+          </a>
+        </div>
+        <% }); %> <% } %>
+      </div>
+      <button>Previous</button>
+      <% if (projects.length > 10) { %>
+      <button>Next</button>
+      <% } %>
+    </main>
+    <footer>
+      <% include ../partial/footer %>
+    </footer>
+  </body>
+</html>
