@@ -1,6 +1,10 @@
 // load the things we need
 var express = require("express");
+var path = require("path");
 var app = express();
+
+// temporary solution
+var hackadayAPIKey = "SD3xfuN4z7CcduPI";
 
 // fake project information
 var projects = [
@@ -19,6 +23,7 @@ var projects = [
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "views")));
 
 // use res.render to load up an ejs view file
 
@@ -26,6 +31,21 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   res.render("pages/projectList", {
     projects: projects
+  });
+});
+
+// to get data for next/prev page
+app.get("/projects", (req, res) => {
+  // pagintation
+  // sent from front-end
+  var page = req.query.page;
+  page--;
+
+  // page = 2
+  const range = projects.slice(page * 6, page * 6 + 6);
+
+  res.json({
+    projects: range
   });
 });
 

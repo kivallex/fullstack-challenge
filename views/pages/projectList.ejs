@@ -7,6 +7,7 @@
     <header>
       <% include ../partial/header %>
     </header>
+
     <main>
       <div class="jumbotron">
         <h1>Supplyframe Fullstack Challenge</h1>
@@ -17,19 +18,26 @@
         </p>
       </div>
       <div class="row">
-        <% if (projects && projects.length) { %> <%
-        projects.forEach(function(project) { %>
-        <div class="col-sm-4">
-          <a href="/detail/<%= project.projectNumber %>">
-            <h4><%= project.name %><%= project.projectNumber %></h4>
-            <p><%= project.projectDetail %></p>
-          </a>
+        <% if (projects && projects.length) { %> <% var start = 0, end = 6; %>
+        <div id="project-grid">
+          <% while(start < end) { %>
+          <div class="col-sm-4">
+            <a href="/detail/<%= projects[start].projectNumber %>">
+              <h4>
+                <%= projects[start].name %><%= projects[start].projectNumber %>
+              </h4>
+              <p><%= projects[start].projectDetail %></p>
+            </a>
+          </div>
+          <% start++; %> <% } %>
         </div>
-        <% }); %> <% } %>
+        <% } %>
       </div>
-      <button>Previous</button>
-      <% if (projects.length > 10) { %>
-      <button>Next</button>
+      <script src="/js/projectList.js"></script>
+      <% if (start >= 6) { %>
+      <button onclick="prev()">Previous</button>
+      <% } %> <% if (end < projects.length) { %>
+      <button onclick="next()">Next</button>
       <% } %>
     </main>
     <footer>
