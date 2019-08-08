@@ -4,13 +4,38 @@
     <% include ../partial/head %>
   </head>
   <body class="container">
-    <main>
-      <div class="jumbotron">
+    <main class="detail">
+      <div class="recommendations">
+        <div class="projects">
+          <p>Recommended Projects</p>
+          <ul>
+            <% for (var i = 0; i < recProjects.length; i++) { %>
+            <li>
+              <a href="/detail/<%= recProjects[i].id %>" target="_blank">
+                <%= recProjects[i].name %>
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+        <div class="users">
+          <p>Recommended Users</p>
+          <ul>
+            <% for (var i = 0; i < recUsers.length; i++) { %>
+            <li>
+              <a href="<%= recUsers[i].url %>" target="_blank">
+                <%= recUsers[i].screen_name %>
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
         <h1>Fullstack Challenge</h1>
-        <h2><%= name %></h2>
-        <h4>Project Number: <%= number %></h4>
-        <h4>Project Detail: <%= detail %></h4>
-        <button><a href="/">Recommended Project</a></button>
+        <h2><%= project.name %></h2>
+        <img src="<%= project.image_url %>" alt="project detail image" />
+        <p><%= project.description %></p>
       </div>
     </main>
   </body>

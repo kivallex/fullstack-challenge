@@ -103,6 +103,42 @@ body {
   margin: 20px 0;
 }
 
+.detail {
+  display: flex;
+
+  .content {
+    flex: 1;
+
+    p {
+      margin: 20px 0;
+    }
+
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+    }
+  }
+}
+
+.recommendations {
+  width: 30%;
+  margin-right: 30px;
+
+  .projects {
+    margin-bottom: 50px;
+  }
+
+  .projects,
+  .users {
+    p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+  }
+}
+
 .hide {
   display: none;
 }
