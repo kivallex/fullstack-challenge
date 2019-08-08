@@ -18,15 +18,15 @@
         </p>
       </div>
       <div class="row">
-        <% if (projects && projects.length) { %> <% var start = 0, end = 6; %>
+        <% if (projects && projects.length) { %> <% var start = 0, end =
+        projects.length; %>
         <div id="project-grid">
           <% while(start < end) { %>
           <div class="col-sm-4">
-            <a href="/detail/<%= projects[start].projectNumber %>">
+            <a href="/detail/<%= projects[start].id %>">
               <h4>
-                <%= projects[start].name %><%= projects[start].projectNumber %>
+                <%= projects[start].name %>
               </h4>
-              <p><%= projects[start].projectDetail %></p>
             </a>
           </div>
           <% start++; %> <% } %>
@@ -34,11 +34,14 @@
         <% } %>
       </div>
       <script src="/js/projectList.js"></script>
-      <% if (start >= 6) { %>
-      <button onclick="prev()">Previous</button>
-      <% } %> <% if (end < projects.length) { %>
-      <button onclick="next()">Next</button>
-      <% } %>
+      <button id="prev" class="hide" onclick="prev()">Previous</button>
+      <button
+        id="next"
+        class="<% if (!hasNext) { %>hide<% } %>"
+        onclick="next()"
+      >
+        Next
+      </button>
     </main>
     <footer>
       <% include ../partial/footer %>
