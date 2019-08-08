@@ -5,39 +5,44 @@
   </head>
   <body class="container">
     <main>
-      <div class="jumbotron">
-        <h1>Fullstack Challenge</h1>
-        <p>-View list of projects from Hackaday in grid mode-</p>
-        <p>
-          -Display 6 items at a time (meaning by pressing next button, you have
-          to see the next 6 items)
-        </p>
-      </div>
-      <div class="row">
-        <% if (projects && projects.length) { %> <% var start = 0, end =
-        projects.length; %>
-        <div id="project-grid">
-          <% while(start < end) { %>
-          <div class="col-sm-4">
-            <a href="/detail/<%= projects[start].id %>">
-              <h4>
-                <%= projects[start].name %>
-              </h4>
-            </a>
+      <h1>Fullstack Challenge</h1>
+      <ul id="project-grid">
+        <% for (var i = 0; i < projects.length; i++) { %>
+        <li>
+          <img src="<%= projects[i].image_url %>" alt="project image" />
+          <div>
+            <a href="/detail/<%= projects[i].id %>"><%= projects[i].name %></a>
+            <div
+              class="owner"
+              onmouseover="hover(event, '<%= projects[i].owner_id %>')"
+              onmouseout="hoverout(event)"
+            >
+              <%= projects[i].owner %>
+              <div class="tooltip"></div>
+            </div>
+            <p><%= projects[i].summary %></p>
           </div>
-          <% start++; %> <% } %>
-        </div>
+        </li>
         <% } %>
+      </ul>
+      <div id="loading" class="hide">Loading...</div>
+      <div class="button-wrapper">
+        <button
+          id="prev"
+          class="<% if (!hasPrev) { %>hide<% } %>"
+          onclick="prev()"
+        >
+          Previous
+        </button>
+        <button
+          id="next"
+          class="<% if (!hasNext) { %>hide<% } %>"
+          onclick="next()"
+        >
+          Next
+        </button>
       </div>
-      <script src="/js/projectList.js"></script>
-      <button id="prev" class="hide" onclick="prev()">Previous</button>
-      <button
-        id="next"
-        class="<% if (!hasNext) { %>hide<% } %>"
-        onclick="next()"
-      >
-        Next
-      </button>
     </main>
+    <script src="/js/projectList.js"></script>
   </body>
 </html>
