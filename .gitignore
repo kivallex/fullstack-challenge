@@ -1,2 +1,4 @@
 node_modules
 views/css
+reports
+selenium-server.log

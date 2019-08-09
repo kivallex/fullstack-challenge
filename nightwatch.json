@@ -1,0 +1,22 @@
+{
+  "src_folders": ["tests"],
+  "output_folder": "reports",
+
+  "selenium": {
+    "start_process": true,
+    "server_path": "./bin/selenium-server-standalone-3.10.0.jar",
+    "host": "localhost",
+    "port": 4444,
+    "cli_args": {
+      "webdriver.chrome.driver": "./bin/chromedriver"
+    }
+  },
+
+  "test_settings": {
+    "default": {
+      "desiredCapabilities": {
+        "browserName": "chrome"
+      }
+    }
+  }
+}
